@@ -13,10 +13,19 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    az acr login --name tamajitacr.azurecr.io
-    mvn package
-    docker build -t myapp:01 .
-    docker tag myapp:01 tamajitacr.azurecr.io/myapp:01
-    docker push tamajitacr.azurecr.io/myapp:01
-  displayName: 'Run a multi-line script'
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'tamajitacr-connection'
+    repository: 'testapp'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
