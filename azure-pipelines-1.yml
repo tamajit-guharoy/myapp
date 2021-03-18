@@ -14,7 +14,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    az acr login --name MyRegistry tamajitacr.azurecr.io
+    az acr login --name tamajitacr.azurecr.io
     mvn package
     docker build -t myapp:01 .
     docker tag myapp:01 tamajitacr.azurecr.io/myapp:01
