@@ -14,6 +14,8 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    mvn --version
-    docker --version
+    mvn package
+    docker build -t myapp:01 .
+    docker tag myapp:01 tamajitacr.azurecr.io/myapp:01
+    docker push tamajitacr.azurecr.io/myapp:01
   displayName: 'Run a multi-line script'
