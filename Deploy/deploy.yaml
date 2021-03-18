@@ -28,7 +28,7 @@ spec:
         app: myapp
     spec:
       containers:
-      - image: tamajitacr.azureacr.io/testapp:50
+      - image: tamajitacr.azurecr.io/testapp:latest
         imagePullPolicy: IfNotPresent
         name: testapp
         ports:
