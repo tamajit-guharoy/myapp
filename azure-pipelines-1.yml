@@ -29,3 +29,5 @@ steps:
     repository: 'testapp'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+    tags:
+     - latest
